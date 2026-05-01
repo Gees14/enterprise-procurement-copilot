@@ -1,0 +1,23 @@
+category_id,category_name,keywords,description
+31161500,Fasteners and hardware,bolt,nut,screw,washer,fastener,anchor,rivet,threaded rod,Hardware items used to mechanically join or affix objects
+31161504,Hydraulic hose assemblies,hydraulic,hose,assembly,fitting,SAE,hydraulic hose,flexible pipe,Hoses and fittings for hydraulic fluid transmission systems
+31161508,Hydraulic cylinders,hydraulic cylinder,actuator,piston,double acting,single acting,bore,Hydraulic actuator cylinders used in machinery and equipment
+31161600,Machined parts and components,machined,cnc,milled,turned,aluminum,bracket,precision part,shaft,Custom and standard machined metal components
+31171500,Bearings and bushings,bearing,ball bearing,roller bearing,bushing,sleeve,Linear and rotary motion components
+32101500,Programmable controllers,plc,programmable logic controller,automation,industrial controller,SCADA,Programmable automation and control devices
+32101700,Circuit boards and assemblies,pcb,circuit board,assembly,electronic module,control board,Printed circuit boards and electronic subassemblies
+40151502,Air compressors,compressor,air compressor,rotary screw,piston compressor,pneumatic,Industrial compressed air generation equipment
+46171600,Gas detection equipment,gas detector,monitor,4-gas,LEL,oxygen,toxic gas,carbon monoxide,H2S,Portable and fixed gas detection and monitoring devices
+46181504,Head protection equipment,helmet,hard hat,safety helmet,ANSI,head protection,Industrial head protection safety equipment
+46181700,Fire suppression systems,fire suppression,sprinkler,fire system,suppression component,halon,FM200,Fire protection system components and equipment
+55121500,Corrugated packaging,cardboard,corrugated,box,carton,shipping box,folding carton,Corrugated cardboard boxes and packaging materials
+56101500,Industrial storage,shelving,rack,cabinet,industrial shelving,storage unit,pallet rack,Industrial storage and shelving solutions
+56101600,Tool storage,tool cabinet,tool storage,toolbox,workshop storage,Lockable and secure storage for hand and power tools
+72103200,Welding services,welding,weld,structural welding,fabrication,mig,tig,arc welding,Metal joining and structural welding services
+72153400,Inspection and certification services,inspection,certification,NDT,pressure vessel,integrity,third-party inspection,Technical inspection and certification services
+78101500,Freight and logistics services,freight,logistics,shipping,forwarding,transport,last-mile,3PL,Transportation and freight forwarding services
+78111805,Equipment rental,rental,lease,forklift rental,crane rental,equipment hire,Temporary equipment rental and leasing services
+12141600,Industrial chemicals,chemical,caustic soda,sodium hydroxide,industrial chemical,solvent,Industrial grade chemicals and reagents
+12352200,Industrial solvents,solvent,isopropyl alcohol,IPA,acetone,cleaning agent,methanol,ethanol,Industrial solvents and cleaning chemicals
+26111700,Renewable energy services,solar,photovoltaic,installation,energy,panel,renewable,wind,Solar panel and renewable energy installation services
+30102000,Metal sheet and plate,stainless steel,sheet metal,steel plate,aluminum sheet,coil,strip,Flat metal products including sheet and plate

@@ -1,0 +1,16 @@
+supplier_id,supplier_name,country,risk_level,approved_status,missing_documents,contact_email,category
+SUP-001,Acme Industrial Supplies,United States,LOW,true,,john.carter@acme-ind.com,Industrial Equipment
+SUP-002,Global Tech Components,Germany,MEDIUM,true,Insurance Certificate,contacts@globaltech.de,Electronics
+SUP-003,Pacific Rim Materials,Japan,LOW,true,,procurement@pacrim.co.jp,Raw Materials
+SUP-004,Vertex Manufacturing Co.,Mexico,HIGH,false,"W-9, Vendor Agreement, Insurance Certificate",vendor-mgmt@vertexmfg.mx,Manufacturing
+SUP-005,Nordic Safety Systems,Sweden,LOW,true,,supply@nordicsafety.se,Safety Equipment
+SUP-006,Iberian Logistics Group,Spain,MEDIUM,true,Updated Banking Details,info@iberianlogistics.es,Logistics
+SUP-007,Delta Hydraulics Ltd.,United Kingdom,LOW,true,,procurement@deltahydraulics.co.uk,Hydraulics
+SUP-008,Coastal Chemical Supply,Canada,MEDIUM,false,"MSDS Sheets, EPA Compliance Form",orders@coastalchem.ca,Chemicals
+SUP-009,Southern Cross Engineering,Australia,LOW,true,,scross-eng@scross.com.au,Engineering Services
+SUP-010,Eurasia Trade Partners,Turkey,HIGH,false,"W-9, Insurance Certificate, Reference Letters",trade@eurasiapartners.tr,General Merchandise
+SUP-011,BlueSky Fasteners Inc.,United States,LOW,true,,sales@bluskyfasteners.com,Fasteners
+SUP-012,Alpine Precision Parts,Switzerland,LOW,true,,alpine-prec@alpineparts.ch,Precision Manufacturing
+SUP-013,Frontier Energy Solutions,United States,MEDIUM,true,Updated Tax Documentation,contact@frontierenergy.com,Energy
+SUP-014,Nairobi Industrial Hub,Kenya,HIGH,false,"W-9, Insurance Certificate",info@nairobiindustrial.ke,General Merchandise
+SUP-015,Caribbean Packaging Co.,Dominican Republic,MEDIUM,true,Insurance Renewal,packco@caribbeanpack.do,Packaging

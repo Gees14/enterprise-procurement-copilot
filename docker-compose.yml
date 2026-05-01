@@ -1,0 +1,83 @@
+version: "3.9"
+
+services:
+  # ─── PostgreSQL ─────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-procurement}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-procurement_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-procurement_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-procurement}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── ChromaDB (vector store) ────────────────────────────────────────────────
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      ANONYMIZED_TELEMETRY: "false"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Backend (FastAPI) ──────────────────────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-procurement}:${POSTGRES_PASSWORD:-procurement_dev}@db:5432/${POSTGRES_DB:-procurement_db}
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-all-MiniLM-L6-v2}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      APP_ENV: ${APP_ENV:-development}
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data:ro
+      - model_cache:/root/.cache
+    depends_on:
+      db:
+        condition: service_healthy
+      chromadb:
+        condition: service_healthy
+    command: >
+      sh -c "python -m app.db.seed && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  # ─── Frontend (React + Vite) ────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  chroma_data:
+  model_cache:

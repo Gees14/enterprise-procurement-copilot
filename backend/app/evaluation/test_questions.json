@@ -1,0 +1,66 @@
+[
+  {
+    "id": "q001",
+    "question": "What documents are required for supplier approval?",
+    "expected_intent": "policy_query",
+    "expected_sources": ["supplier_approval_policy.md"],
+    "expected_tools": ["retrieve_policy_documents"],
+    "notes": "Core policy retrieval test"
+  },
+  {
+    "id": "q002",
+    "question": "Which suppliers had the highest purchase order volume?",
+    "expected_intent": "top_suppliers",
+    "expected_sources": [],
+    "expected_tools": ["get_top_suppliers_by_spend"],
+    "notes": "Structured data retrieval — no documents needed"
+  },
+  {
+    "id": "q003",
+    "question": "Classify this item description into a UNSPSC-style category: hydraulic hose assembly",
+    "expected_intent": "classify_item",
+    "expected_sources": [],
+    "expected_tools": ["classify_unspsc_item"],
+    "notes": "Classification capability test"
+  },
+  {
+    "id": "q004",
+    "question": "What does the purchase order policy say about payment terms?",
+    "expected_intent": "policy_query",
+    "expected_sources": ["purchase_order_policy.md"],
+    "expected_tools": ["retrieve_policy_documents"],
+    "notes": "PO policy retrieval test"
+  },
+  {
+    "id": "q005",
+    "question": "Give me a summary of supplier SUP-001 including their recent purchase orders.",
+    "expected_intent": "supplier_detail_with_po",
+    "expected_sources": [],
+    "expected_tools": ["get_supplier_profile", "get_purchase_orders_by_supplier"],
+    "notes": "Supplier + PO combination query"
+  },
+  {
+    "id": "q006",
+    "question": "Generate a follow-up email to a supplier who has missing compliance documents.",
+    "expected_intent": "email_draft",
+    "expected_sources": ["supplier_approval_policy.md"],
+    "expected_tools": ["generate_supplier_followup_email", "retrieve_policy_documents"],
+    "notes": "Email generation grounded in policy"
+  },
+  {
+    "id": "q007",
+    "question": "What is the data governance policy for purchase order data?",
+    "expected_intent": "policy_query",
+    "expected_sources": ["data_governance_policy.md"],
+    "expected_tools": ["retrieve_policy_documents"],
+    "notes": "Data governance policy retrieval"
+  },
+  {
+    "id": "q008",
+    "question": "Classify this: industrial safety gloves, cut-resistant, level D",
+    "expected_intent": "classify_item",
+    "expected_sources": [],
+    "expected_tools": ["classify_unspsc_item"],
+    "notes": "PPE classification test"
+  }
+]

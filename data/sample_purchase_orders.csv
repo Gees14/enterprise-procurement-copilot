@@ -1,0 +1,26 @@
+po_id,supplier_id,item_description,category,unspsc_code,amount,currency,po_date,status
+PO-10001,SUP-001,Heavy-duty industrial shelving units 2m x 1m,Industrial Equipment,56101500,12500.00,USD,2024-01-15,CLOSED
+PO-10002,SUP-001,Safety helmets ANSI Z89.1 compliant (500 units),Safety Equipment,46181504,8750.00,USD,2024-02-03,CLOSED
+PO-10003,SUP-002,PCB assembly modules for control systems (100 units),Electronics,32101700,45000.00,USD,2024-01-22,OPEN
+PO-10004,SUP-003,Stainless steel sheet 304 grade 2mm (10 tonnes),Raw Materials,30102000,38500.00,USD,2024-02-10,CLOSED
+PO-10005,SUP-004,CNC machined aluminum brackets (1000 units),Manufacturing,31161600,22000.00,MXN,2024-01-08,CANCELLED
+PO-10006,SUP-005,Fire suppression system components,Safety Equipment,46181700,67000.00,USD,2024-03-01,OPEN
+PO-10007,SUP-006,Freight forwarding services Q1 2024,Logistics,78101500,15000.00,EUR,2024-01-01,CLOSED
+PO-10008,SUP-007,Hydraulic hose assembly 3/4" SAE 100R2 (200 units),Hydraulics,31161504,9800.00,GBP,2024-02-14,OPEN
+PO-10009,SUP-001,Tool storage cabinets lockable (50 units),Industrial Equipment,56101600,18200.00,USD,2024-03-15,OPEN
+PO-10010,SUP-008,Industrial solvent 99% isopropyl alcohol (500L),Chemicals,12352200,6500.00,CAD,2024-02-20,CLOSED
+PO-10011,SUP-009,Structural steel welding services,Engineering Services,72103200,88000.00,AUD,2024-01-30,OPEN
+PO-10012,SUP-011,M8 hex bolts stainless steel 50mm (10000 units),Fasteners,31161500,3200.00,USD,2024-03-05,CLOSED
+PO-10013,SUP-012,Precision ground shafts 25mm dia (100 units),Precision Manufacturing,31161600,14500.00,CHF,2024-02-25,OPEN
+PO-10014,SUP-013,Solar panel array installation services,Energy,26111700,125000.00,USD,2024-03-10,OPEN
+PO-10015,SUP-001,Industrial air compressor 50HP rotary screw,Industrial Equipment,40151502,32000.00,USD,2024-01-05,CLOSED
+PO-10016,SUP-002,Programmable logic controllers (20 units),Electronics,32101500,28000.00,EUR,2024-03-20,OPEN
+PO-10017,SUP-005,Gas detection monitors portable 4-gas (100 units),Safety Equipment,46171600,41000.00,USD,2024-02-01,CLOSED
+PO-10018,SUP-007,Hydraulic cylinder double-acting 100mm bore (10 units),Hydraulics,31161508,7600.00,GBP,2024-03-25,OPEN
+PO-10019,SUP-015,Corrugated cardboard boxes 40x30x25cm (10000 units),Packaging,55121500,5500.00,USD,2024-02-15,CLOSED
+PO-10020,SUP-006,Last-mile delivery services March 2024,Logistics,78101500,9200.00,EUR,2024-03-01,OPEN
+PO-10021,SUP-009,Pressure vessel inspection and certification,Engineering Services,72153400,22000.00,AUD,2024-01-10,CLOSED
+PO-10022,SUP-001,Forklift rental 3-month contract,Industrial Equipment,78111805,18000.00,USD,2024-03-01,OPEN
+PO-10023,SUP-008,Caustic soda 50% solution industrial grade (2000L),Chemicals,12141600,11200.00,CAD,2024-03-12,OPEN
+PO-10024,SUP-004,Injection molded plastic enclosures (5000 units),Manufacturing,31201500,19500.00,MXN,2024-02-08,CANCELLED
+PO-10025,SUP-012,Precision ball bearings 6205-2RS (500 units),Precision Manufacturing,31171500,8900.00,CHF,2024-03-18,OPEN
