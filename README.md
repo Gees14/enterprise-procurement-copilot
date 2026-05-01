@@ -102,11 +102,13 @@ This starts:
 ### 3. Seed sample data & ingest documents
 
 ```bash
-# Seed database (runs automatically on startup via docker-compose command)
+# Database seed runs automatically on backend startup (no manual step needed)
+# To re-seed manually:
 make seed
 
-# Ingest policy documents into ChromaDB
+# Ingest policy documents into ChromaDB (required for RAG — do this once)
 curl -X POST http://localhost:8000/documents/ingest-sample
+# Or use the Documents page in the UI → "Ingest Sample Docs" button
 ```
 
 ### 4. Open the app

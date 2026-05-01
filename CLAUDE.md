@@ -194,7 +194,7 @@ cd backend && pytest tests/ -v  # local
 
 https://github.com/Gees14/enterprise-procurement-copilot
 
-## Test suite summary (as of Phase 4)
+## Test suite summary (as of Phase 6 — FINAL)
 
 113 tests — all pass locally without PostgreSQL, ChromaDB, sentence_transformers, or any API keys.
 
@@ -209,3 +209,28 @@ https://github.com/Gees14/enterprise-procurement-copilot
 | test_retrieval.py | 11 | RAG retrieval: score filter, top_k, excerpt truncation |
 | test_classification_service.py | 16 | Keyword + embedding classification |
 | test_agent.py | 34 | Intent detection, tool routing, grounding, RBAC |
+
+## Evaluation
+
+`backend/app/evaluation/rag_eval.py` — async runner, run with:
+```bash
+cd backend && python -m app.evaluation.rag_eval
+```
+Requires full stack running (`make up`) + documents ingested (`POST /documents/ingest-sample`).
+
+Expected results with MockProvider (no Gemini key):
+- Intent accuracy: 8/8 (100%) — rule-based _detect_intent is deterministic
+- Tool accuracy: 8/8 (100%) — intent→tools mapping is fixed
+- Retrieval hit rate: 5/5 RAG questions (100%) — ChromaDB must be seeded
+- Avg latency: < 100 ms with MockProvider
+
+## Project status
+
+All 6 phases complete. Project is portfolio-ready.
+GitHub: https://github.com/Gees14/enterprise-procurement-copilot
+
+Next steps if extending:
+- Run `make up` → open http://localhost:5173 to demo the app
+- Add GEMINI_API_KEY to .env for real LLM answers (MockProvider used by default)
+- Run `cd backend && python -m app.evaluation.rag_eval` for eval report
+- GitHub Actions CI runs automatically on every push (backend pytest + ruff + frontend tsc + build)
