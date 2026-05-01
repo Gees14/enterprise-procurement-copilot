@@ -5,7 +5,6 @@ ChromaDB and sentence_transformers are mocked — no Docker required.
 from unittest.mock import patch
 
 import numpy as np
-import pytest
 
 from app.rag.retrieval import retrieve
 from app.schemas.chat import SourceChunk

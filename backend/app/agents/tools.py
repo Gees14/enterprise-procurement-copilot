@@ -3,7 +3,6 @@ Procurement agent tools — each tool wraps a service call and returns a
 plain dict that can be serialized for the LLM prompt and the API trace.
 """
 from __future__ import annotations
-import json
 from app.db.database import SessionLocal
 from app.services.supplier_service import SupplierService
 from app.services.purchase_order_service import PurchaseOrderService
