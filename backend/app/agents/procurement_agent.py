@@ -113,7 +113,15 @@ class ProcurementAgent:
                     )
 
         elif intent == "email_draft":
-            # Extract supplier context if possible
+            allowed, reason = self._governance.check_access(role, "email_draft")
+            if not allowed:
+                trace.add(f"Access denied: {reason}")
+                return ChatResponse(
+                    answer=f"Access denied: {reason}",
+                    grounding_status="not_grounded",
+                    trace=trace.as_list(),
+                    model_used=self._llm.model_name,
+                )
             match = _SUPPLIER_ID_RE.search(question)
             supplier_name = match.group().upper() if match else "the supplier"
             ctx, call = tool_generate_supplier_followup_email(supplier_name, issue=question)
