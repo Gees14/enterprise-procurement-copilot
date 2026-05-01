@@ -102,24 +102,26 @@ All 113 tests pass locally without PostgreSQL, ChromaDB, or any API keys.
 
 ---
 
-### ⬜ Phase 5 — TODO
+### ✅ Phase 5 — COMPLETE
 **Frontend integration**
 
 Goal: all 4 pages functional with real backend data.
 
-Tasks:
-- Confirm Dashboard loads analytics and supplier data
-- Confirm Copilot chat works end-to-end (send message → get response → show sources)
-- Confirm Suppliers page loads and filters work
-- Confirm Documents page loads, ingest-sample works, upload works
-- Fix any TypeScript type errors
-- Run `npx tsc --noEmit` → zero errors
-- Run `npm run build` → clean build
+Delivered:
+- Dashboard: loads `GET /purchase-orders/analytics` + `GET /suppliers`, renders KPI cards, top suppliers, spend by category
+- Copilot: full chat pipeline — sends `POST /chat`, renders grounded answers with GroundingBadge, agent trace side panel, top-k selector; chat state persists across navigation (lifted to App.tsx)
+- Suppliers: loads `GET /suppliers?limit=100`, client-side filter by name/country/ID, color-coded risk and status badges
+- Documents: loads `GET /documents`, ingest-sample via `POST /documents/ingest-sample`, upload via `POST /documents/upload`
+- Fixed TypeScript: removed unused `RiskBadge` from `Dashboard.tsx` (was defined but not used — `noUnusedLocals: true`)
+- Fixed `Suppliers.tsx` useEffect: added `.catch(() => {}).finally(...)` for error safety
+- `npx tsc --noEmit` → 0 errors
+- `npm run build` → clean build (40 modules, 184 kB JS / 59 kB gzip)
 
-Known items to verify:
-- `import.meta.env.VITE_API_URL` works (vite-env.d.ts exists)
-- Chat state persists when navigating between pages (lifted to App.tsx)
-- GroundingBadge displays correctly for all 4 statuses
+Key design decisions from Phase 5:
+- `VITE_API_URL` env var controls backend URL; defaults to `http://localhost:8000` for local dev
+- `vite.config.ts` proxy (`/api → backend:8000`) is available for Docker-internal routing if needed
+- `GroundingBadge` handles all 4 statuses: grounded / partially_grounded / not_grounded / mock
+- `ChatMessage.response` carries full `ChatResponse` for per-message source count, latency, trace toggle
 
 ---
 

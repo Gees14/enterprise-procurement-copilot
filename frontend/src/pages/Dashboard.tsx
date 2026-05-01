@@ -14,17 +14,6 @@ function StatCard({ label, value, sub }: { label: string; value: string | number
   )
 }
 
-function RiskBadge({ level }: { level: string }) {
-  const cls = {
-    LOW: 'bg-green-900/40 text-green-400 border-green-800',
-    MEDIUM: 'bg-yellow-900/40 text-yellow-400 border-yellow-800',
-    HIGH: 'bg-red-900/40 text-red-400 border-red-800',
-  }[level] ?? 'bg-slate-800 text-slate-400 border-slate-700'
-  return (
-    <span className={`text-xs px-2 py-0.5 rounded border ${cls}`}>{level}</span>
-  )
-}
-
 export default function Dashboard() {
   const [analytics, setAnalytics] = useState<POAnalytics | null>(null)
   const [suppliers, setSuppliers] = useState<Supplier[]>([])

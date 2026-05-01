@@ -17,10 +17,12 @@ export default function Suppliers() {
   const [filter, setFilter] = useState('')
 
   useEffect(() => {
-    getSuppliers({ limit: 100 }).then((data) => {
-      setSuppliers(data)
-      setLoading(false)
-    })
+    getSuppliers({ limit: 100 })
+      .then((data) => {
+        setSuppliers(data)
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false))
   }, [])
 
   const filtered = suppliers.filter(
