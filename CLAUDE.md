@@ -158,6 +158,8 @@ CI must pass before this phase is complete.
 - Intent detection in `_detect_intent()` in `procurement_agent.py`
 - SUP-xxx pattern detected via regex `_SUPPLIER_ID_RE`
 - RAG is always run for: policy_query, general_query, email_draft, supplier_detail
+- RBAC enforced before tool dispatch: `email_draft` checks `check_access(role, "email_draft")` — analyst is denied; manager and admin are allowed
+- Caution: keywords like "summary", "overview", "risk", "po" in a question containing SUP-xxx trigger `supplier_detail_with_po` (not `supplier_detail`)
 
 ### DB session pattern
 - FastAPI routes use `Depends(get_db)` for session injection
@@ -189,4 +191,20 @@ cd backend && pytest tests/ -v  # local
 
 ## GitHub repo
 
-Not yet created. Will be at: https://github.com/Gees14/enterprise-procurement-copilot
+https://github.com/Gees14/enterprise-procurement-copilot
+
+## Test suite summary (as of Phase 4)
+
+113 tests — all pass locally without PostgreSQL, ChromaDB, sentence_transformers, or any API keys.
+
+| File | Tests | What it covers |
+|------|-------|---------------|
+| test_health.py | 1 | FastAPI health endpoint |
+| test_chunking.py | 4 | Text chunking with overlap |
+| test_governance.py | 8 | RBAC access control + grounding status |
+| test_llm_provider.py | 4 | MockProvider deterministic output |
+| test_supplier_service.py | 14 | SupplierService list/filter/detail/profile-dict |
+| test_purchase_order_service.py | 21 | POService list/filter/analytics/agent-tools |
+| test_retrieval.py | 11 | RAG retrieval: score filter, top_k, excerpt truncation |
+| test_classification_service.py | 16 | Keyword + embedding classification |
+| test_agent.py | 34 | Intent detection, tool routing, grounding, RBAC |
