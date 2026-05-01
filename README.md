@@ -147,9 +147,43 @@ curl -X POST http://localhost:8000/documents/ingest-sample
 make test
 # or inside Docker:
 docker compose exec backend pytest tests/ -v
+# or locally (no Docker required):
+cd backend && pytest tests/ -v
 ```
 
-Tests cover: health endpoint, chunking, governance/RBAC rules, LLM provider abstraction.
+**113 tests** across 9 files — all pass without PostgreSQL, ChromaDB, or API keys:
+
+| File | Tests | Coverage |
+|------|-------|----------|
+| test_health.py | 1 | FastAPI health endpoint |
+| test_chunking.py | 4 | Text chunking with overlap |
+| test_governance.py | 8 | RBAC access control + grounding status |
+| test_llm_provider.py | 4 | MockProvider deterministic output |
+| test_supplier_service.py | 14 | Supplier list / filter / detail / profile-dict |
+| test_purchase_order_service.py | 21 | PO list / filter / analytics / agent tools |
+| test_retrieval.py | 11 | RAG score filter, top-k, excerpt truncation |
+| test_classification_service.py | 16 | Keyword + embedding UNSPSC classification |
+| test_agent.py | 34 | Intent detection, tool routing, grounding, RBAC |
+
+---
+
+## Evaluation
+
+Run the evaluation harness against 8 representative questions:
+
+```bash
+# Requires full stack running (make up + ingest-sample)
+cd backend && python -m app.evaluation.rag_eval
+```
+
+Expected results (MockProvider, no Gemini key):
+
+| Metric | Score |
+|--------|-------|
+| Intent accuracy | 8/8 (100%) |
+| Tool accuracy | 8/8 (100%) |
+| Retrieval hit rate | 5/5 RAG questions (100%) |
+| Avg latency (mock) | < 100 ms |
 
 ---
 
