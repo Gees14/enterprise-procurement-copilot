@@ -1,4 +1,5 @@
 from __future__ import annotations
+import os
 from pathlib import Path
 from app.rag.chunking import chunk_text
 from app.rag.embeddings import embed_texts
@@ -10,7 +11,8 @@ from app.core.logging import get_logger
 
 logger = get_logger(__name__)
 
-POLICY_DOCS_DIR = Path(__file__).parent.parent.parent.parent / "data" / "policy_documents"
+_data_dir = Path(os.getenv("DATA_DIR", str(Path(__file__).parent.parent.parent.parent / "data")))
+POLICY_DOCS_DIR = _data_dir / "policy_documents"
 
 
 class DocumentIngestionService:

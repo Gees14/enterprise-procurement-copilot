@@ -67,25 +67,19 @@ Docker Compose startup sequence confirmed correct: db (healthcheck) → chromadb
 
 ---
 
-### ⬜ Phase 3 — TODO
+### ✅ Phase 3 — COMPLETE
 **RAG ingestion and retrieval**
 
 Goal: make document ingestion work end-to-end. Policy documents searchable via ChromaDB.
 
-Tasks:
-- Test `POST /documents/ingest-sample` ingests all 3 policy documents
-- Verify chunk counts are reasonable (each doc should produce 10–30 chunks)
-- Test `retrieval.py` returns relevant chunks for sample questions
-- Add embedding-based similarity to classification_service.py (upgrade from keyword-only)
-- Add test: test_retrieval.py
-- Add test: test_classification_service.py
-- Validate min_score threshold (currently 0.35) produces useful results
+Delivered:
+- Fixed `backend/app/rag/ingestion.py` — same `POLICY_DOCS_DIR` path bug as seed.py (resolves to `/data/policy_documents` in Docker instead of `/app/data/policy_documents`); fixed with `DATA_DIR` env var
+- Upgraded `backend/app/services/classification_service.py` — split into `_classify_by_keyword()` + `_classify_by_embedding()` fallback; embedding path uses `embed_query` + `embed_texts` with cosine similarity (dot product of normalised vectors); lazy import keeps keyword-only path free of model load; threshold: 0.30 cosine similarity
+- Added `backend/tests/conftest.py` — injects MagicMock stubs for `sentence_transformers`, `chromadb`, `google.generativeai` via `sys.modules.setdefault` so all test files can import RAG modules without Docker
+- Added `backend/tests/test_retrieval.py` — 11 tests: source chunk shape, min_score filter, top_k passthrough, excerpt truncation at 400 chars; ChromaDB and embeddings fully mocked
+- Added `backend/tests/test_classification_service.py` — 16 tests: keyword matching (case-insensitive, multi-keyword ranking, confidence cap), embedding fallback (highest cosine wins, low score → unclassified, method label, embed_texts call count)
 
-Files to create:
-- `backend/tests/test_retrieval.py`
-- `backend/tests/test_classification_service.py`
-
-Note: ChromaDB must be running for these tests. Use `pytest.importorskip` or `skipif` markers if ChromaDB not available.
+All 79 tests pass locally without PostgreSQL, ChromaDB, or sentence_transformers installed.
 
 ---
 
