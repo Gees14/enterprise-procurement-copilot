@@ -3,6 +3,7 @@ Seed script — loads sample CSV data into PostgreSQL and triggers document inge
 Run with: python -m app.db.seed
 """
 import csv
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -14,7 +15,9 @@ from app.db.models import Supplier, PurchaseOrder, UnspscCategory
 configure_logging()
 logger = get_logger(__name__)
 
-DATA_DIR = Path(__file__).parent.parent.parent.parent / "data"
+# DATA_DIR env var lets Docker override the path (volume at /app/data).
+# Local fallback: 4 parents up from seed.py lands at the project root.
+DATA_DIR = Path(os.getenv("DATA_DIR", str(Path(__file__).parent.parent.parent.parent / "data")))
 
 
 def seed_suppliers(db) -> int:

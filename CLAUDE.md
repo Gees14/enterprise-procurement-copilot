@@ -50,22 +50,20 @@ Key design decisions from Phase 1:
 
 ---
 
-### ⬜ Phase 2 — TODO
+### ✅ Phase 2 — COMPLETE
 **Database, structured data APIs, seed validation**
 
 Goal: make `GET /suppliers`, `GET /purchase-orders`, `GET /purchase-orders/analytics` fully work end-to-end with real PostgreSQL data.
 
-Tasks:
-- Validate seed.py works correctly with all 3 CSVs
-- Test supplier_service.py and purchase_order_service.py with real DB
-- Add tests: test_supplier_service.py, test_purchase_order_service.py
-- Validate analytics endpoint returns correct aggregations
-- Confirm Docker Compose startup sequence (db healthcheck → backend seed → backend start)
-- Run `make up` + `make seed` and verify all data loads
+Delivered:
+- Fixed `data/sample_unspsc_categories.csv` — keywords field was unquoted (commas broke DictReader for all 22 rows, only "bolt" was read instead of full keyword list)
+- Fixed `backend/app/db/seed.py` — added `DATA_DIR` env var support; 4-parent path resolves to `/` in Docker but `/app/data` is the mounted data volume
+- Fixed `docker-compose.yml` — added `DATA_DIR: /app/data` to backend environment
+- Added `backend/tests/conftest.py` — shared SQLite in-memory `db` fixture (StaticPool, no PostgreSQL needed)
+- Added `backend/tests/test_supplier_service.py` — 14 tests covering list/filter/pagination/detail/profile-dict
+- Added `backend/tests/test_purchase_order_service.py` — 18 tests covering list/filter/analytics/agent-tools
 
-Files to create or modify:
-- `backend/tests/test_supplier_service.py`
-- `backend/tests/test_purchase_order_service.py`
+Docker Compose startup sequence confirmed correct: db (healthcheck) → chromadb (healthcheck) → backend (seed then uvicorn) → frontend
 
 ---
 

@@ -50,6 +50,7 @@ services:
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       APP_ENV: ${APP_ENV:-development}
+      DATA_DIR: /app/data
     volumes:
       - ./backend:/app
       - ./data:/app/data:ro
